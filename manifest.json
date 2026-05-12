@@ -9,7 +9,7 @@
     "48": "icons/distraction.png"
   },
 
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage", "tabs","<all_urls"],
   "browser_specific_settings": {
     "gecko": {
       "id": "consciousbrowsing@mozilla.org",
@@ -19,10 +19,11 @@
     }
   },
 
-  "content_scripts": [
-    {
-      "matches": [""],
-      "js": ["consciousbrowsing.js"]
-    }
-  ]
+"background":{
+    "scripts": ["consciousbrowsing.js"]
+},
+
+"web_accessible_resources": [
+    "conscious.html"
+]
 }
