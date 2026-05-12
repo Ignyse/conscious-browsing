@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "ConsciousBrowsing",
+  "version": "1.0",
+
+  "description": "Helps being more conscious while broswing, staying away from too many distracting websites",
+
+  "icons": {
+    "48": "icons/distraction.png"
+  },
+
+  "permissions": ["activeTab", "scripting"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "consciousbrowsing@mozilla.org",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": [""],
+      "js": ["consciousbrowsing.js"]
+    }
+  ]
+}
