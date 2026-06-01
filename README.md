@@ -15,8 +15,14 @@ Supported interruption types:
 - Text messages (MVP)
 - Images (Phase 2)
 - Video (Phase 3)
-- 
-## Stack
-Originally it will be built as a web extension (firefox initially). Mainly hmtl, javascript, css + list of url linked to uploaded videos
+  
+## Tech Stack
+- Browser Extension API (Chrome MV3 / Firefox WebExtensions [Future?])
+- JavaScript / TypeScript
+- HTML + CSS (intermediate UI)
+- browser.storage.local (settings persistence)
+- Future: React (settings UI), Vite (bundling)
+  
+
 
 
