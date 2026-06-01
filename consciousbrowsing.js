@@ -21,3 +21,18 @@ const DEFAULT_CONFIG = {
     }
   ]
 };
+
+
+// initialize storage with defaults
+chrome.runtime.onInstalled.addListener(async () => {
+  const existing = await chrome.storage.local.get("config");
+  if (!existing.config) {
+    await chrome.storage.local.set({ config: DEFAULT_CONFIG });
+  }
+  await updateRules();
+});
+
+// listen for config changes from popup
+chrome.runtime.onMessage.addListener((msg) => {
+  if (msg.type === "CONFIG_UPDATED") updateRules();
+});
