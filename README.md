@@ -25,4 +25,17 @@ Supported interruption types:
   
 
 
+## Architecture
+- **Background Service Worker**
+  - Detects navigation
+  - Matches user-defined domains
+  - Redirects to intermediate page
+
+- **Intermediate Page**
+  - Displays message/media
+  - Handles “Continue” redirect
+
+- **Options Page**
+  - Manage blocked domains
+  - Configure messages/media
 
