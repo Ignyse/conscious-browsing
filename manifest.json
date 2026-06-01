@@ -1,29 +1,23 @@
 {
   "manifest_version": 3,
-  "name": "ConsciousBrowsing",
+  "name": "Conscious Browsing",
   "version": "1.0",
-
-  "description": "Helps being more conscious while broswing, staying away from too many distracting websites",
-
-  "icons": {
-    "48": "icons/distraction.png"
+  "description": "A letter to your future self — interrupts habitual browsing.",
+  "permissions": ["declarativeNetRequest", "storage", "tabs"],
+  "background": {
+    "service_worker": "consciousbrowsing.js"
   },
-
-  "permissions": ["activeTab", "scripting", "storage", "tabs","<all_urls"],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "consciousbrowsing@mozilla.org",
-      "data_collection_permissions": {
-        "required": ["none"]
-      }
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon48.png"
     }
   },
-
-"background":{
-    "scripts": ["consciousbrowsing.js"]
-},
-
-"web_accessible_resources": [
-    "conscious.html"
-]
+  "web_accessible_resources": [
+    {
+      "resources": ["intermediate.html"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "host_permissions": ["<all_urls>"]
 }
