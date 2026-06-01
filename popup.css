@@ -1,0 +1,116 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --paper-dark: #ede7d8;
+      --accent: #c0392b;
+      --muted: #8a7f72;
+      --line: #d4cbbe;
+    }
+    body {
+      width: 300px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Libre Baskerville', serif;
+      padding: 1.5rem;
+    }
+    h1 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .subtitle {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .domain-list {
+      list-style: none;
+      margin-bottom: 1.2rem;
+    }
+    .domain-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+    }
+    .domain-list li button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0 0.2rem;
+      line-height: 1;
+    }
+    .domain-list li button:hover { color: var(--accent); }
+    .add-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    input[type="text"] {
+      flex: 1;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.45rem 0.7rem;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      outline: none;
+    }
+    input[type="text"]:focus { border-color: var(--muted); }
+    input[type="text"]::placeholder { color: var(--line); }
+    button.add-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.9rem;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      cursor: pointer;
+    }
+    button.add-btn:hover { opacity: 0.85; }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 1rem 0;
+    }
+    .msg-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    a.edit-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    a.edit-link:hover { text-decoration: underline; }
+    .status {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      text-align: right;
+    }
