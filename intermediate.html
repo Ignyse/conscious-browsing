@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hold on.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --paper-dark: #ede7d8;
+      --accent: #c0392b;
+      --muted: #8a7f72;
+      --line: #d4cbbe;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Libre Baskerville', Georgia, serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      /* Subtle paper texture via repeating gradient */
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          var(--line) 27px,
+          var(--line) 28px
+        );
+      background-size: 100% 28px;
+    }
+
+    .envelope {
+      position: relative;
+      max-width: 680px;
+      width: 100%;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow:
+        0 2px 0 var(--paper-dark),
+        0 4px 0 #cec5b4,
+        0 8px 32px rgba(0,0,0,0.12),
+        0 1px 0 rgba(255,255,255,0.8) inset;
+      padding: 3.5rem 4rem;
+      /* Stop the background lines from showing through */
+      isolation: isolate;
+    }
+
+    /* Folded corner effect */
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 48px; height: 48px;
+      background: linear-gradient(225deg, var(--paper-dark) 50%, transparent 50%);
+      border-left: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stamp {
+      position: absolute;
+      top: 1.2rem;
+      right: 3.5rem;
+      width: 52px;
+      height: 64px;
+      border: 2px solid var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      text-align: center;
+      /* Perforated border */
+      outline: 3px dashed var(--line);
+      outline-offset: 3px;
+    }
+
+    .from-line {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    .from-line span {
+      color: var(--accent);
+    }
+
+    .salutation {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      /* Slight ink bleed effect */
+      text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.08);
+    }
+
+    .body-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #3d3630;
+      margin-bottom: 2rem;
+    }
+
+    .signature-block {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .signature-text {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .signature-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      font-style: normal;
+      display: block;
+      margin-top: 0.2rem;
+    }
+
+    .domain-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: var(--paper-dark);
+      border: 1px solid var(--line);
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    .actions {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-continue {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--line);
+      padding: 0.65rem 1.4rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-continue:hover {
+      border-color: var(--muted);
+      color: var(--ink);
+      background: var(--paper-dark);
+    }
+
+    .btn-close {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      padding: 0.65rem 1.8rem;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn-close:hover { opacity: 0.85; }
+
+    /* Fade in animation */
+    .envelope {
+      animation: unfold 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes unfold {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .envelope { padding: 2.5rem 2rem; }
+      .stamp { display: none; }
+      .signature-block { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope">
+    <div class="stamp">MIND<br>FUL<br>— — —<br>PAUSE</div>
+
+    <div class="from-line">A note from <span>past you</span></div>
+
+    <div class="salutation">Hey, future me —</div>
+    <h1 id="msg-title">Loading...</h1>
+    <p class="body-text" id="msg-body"></p>
+
+    <div class="signature-block">
+      <div class="signature-text">
+        Written with intention,
+        <span class="signature-name">You (the wiser one)</span>
+      </div>
+      <div class="domain-pill" id="domain-pill"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-close" id="btn-close">← Go back</button>
+      <button class="btn-continue" id="btn-continue">I'll go anyway →</button>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    let data = {};
+    try {
+      data = JSON.parse(decodeURIComponent(params.get("data") || "{}"));
+    } catch (e) {}
+
+    document.getElementById("msg-title").textContent = data.title || "Hey. Stop.";
+    document.getElementById("msg-body").textContent = data.body || "You opened this out of habit. Is this intentional?";
+    document.getElementById("domain-pill").textContent = data.domain || "";
+
+    document.getElementById("btn-close").addEventListener("click", () => {
+      history.back();
+    });
+
+    document.getElementById("btn-continue").addEventListener("click", () => {
+      if (!data.destination) return;
+      chrome.runtime.sendMessage({
+        type: "BYPASS",
+        tabId: data.tabId,
+        domain: data.domain,
+        destination: data.destination
+      });
+    });
+  </script>
+</body>
+</html>
